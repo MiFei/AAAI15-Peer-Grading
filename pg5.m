@@ -1,0 +1,28 @@
+%%% Test PG5 individually
+load('data/gradeass3.mat');
+load('data/ground3.mat');
+load('data/gradee3.mat');
+load('data/gradee_member_grade3');
+load('data/gradee_member_grader3');
+load('data/grader_member_grade3');
+load('data/grader_member_gradee3');
+
+[bias3_pg5, relia3_pg5, result3_pg5]  = gibbs (11, 0.04, 0.2, 0.04, 700, 300, gradeass3,  gradee_member_grade3, gradee_member_grader3, grader_member_grade3, grader_member_gradee3);
+burn_in_size3 = 0.3 * size(result3_pg5, 2);
+estimate3_pg5 = mean(result3_pg5(:,(burn_in_size3+1): size(result3_pg5, 2)), 2);
+result3_pg5 = mean(estimate3_pg5,2);
+
+s = length(ground3);
+PG5 = [];
+
+for it =1: s
+    PG5 = [PG5; estimate3_pg5(find(ismember(gradee3, gradeass3(min(find(cell2mat(gradeass3(:,1)) == ground3(it,1))), 3))))];
+end
+
+result_ground3  = [ground3, PG5];
+
+RMSE3_baseline = sqrt(mean((result_ground3(:,3) - result_ground3(:,2)).^2));
+RMSE3_pg5 = sqrt(mean((result_ground3(:,4) - result_ground3(:,2)).^2));
+
+
+fprintf('PG5 cardinal evluation RMSE %6.4f \r', RMSE3_pg5);
