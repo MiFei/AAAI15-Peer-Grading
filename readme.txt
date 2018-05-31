@@ -2,11 +2,14 @@ Documentation, Version 1.0, 25/06/2015
 -------------
 
 Contact info: 
-email: fmi@cse.ust.hk
-website: www.cse.ust.hk/~fmi
+email: fei.mi@epfl.ch
+website: https://lia.epfl.ch/~mi/
+
 ----------------------------
 
-This version of Matlab code contains runing our proposed models on one of our peer grading dataset, i.e., the third assignment.
+This version of Matlab code contains code for our AAAI 15 paper of "Probabilistic Graphical Models for Boosting
+Cardinal and Ordinal Peer Grading in MOOCs" at https://www.aaai.org/ocs/index.php/AAAI/AAAI15/paper/viewFile/9534/9280
+It runs our proposed models on one of our peer grading dataset, i.e., the third assignment.
 
 -------------
 'data' folder
